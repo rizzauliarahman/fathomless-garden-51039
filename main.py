@@ -25,7 +25,8 @@ def upload():
     q = Queue(connection=conn)
     status = 1
 
-    q.enqueue(mt.convert_upload(), 'http://heroku.com')
+    # q.enqueue(mt.convert_upload(), 'http://heroku.com')
+    mt.convert_upload()
     return jsonify(result=status, id=684)
 
 
