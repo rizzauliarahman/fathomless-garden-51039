@@ -1,6 +1,6 @@
 import load_dataset as ld
 import HelperFunction as h
-from tensorflow.keras.models import Sequential
+from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense, Flatten, Dropout, BatchNormalization, Activation
 from sklearn.model_selection import StratifiedKFold
 from tensorflow.keras.optimizers import Adam, SGD
@@ -65,11 +65,31 @@ def main():
         csvscores.append(scores[1] * 100)
         n += 1
 
-    # model.save('cnn_model.h5')
+    model.save('cnn_model.h5')
     print("Average Folds Accuracy %.2f%% (+/- %.2f%%)" % (np.mean(csvscores), np.std(csvscores)))
-    acc = np.mean(csvscores)
 
     # h.save_performance(classifier_name, acc, param)
     #
     # labels_file = open('labels', mode='wb')
     # pickle.dump(label_list, labels_file)
+
+
+def retrain():
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+    model = load_model("cnn_model.h5")
+
+    x_add, y_add = ld.load_new_data()
+    x_add = np.array(x_add)
+    y_add = np.array(keras.utils.to_categorical(y_add, num_classes=2))
+
+    model.fit(x_add, y_add, epochs=20, batch_size=10, verbose=1)
+
+    ldfile = open("data_val.dat", mode="rb")
+    data_val = pickle.load(ldfile)
+
+    x_val = data_val['x_val']
+    y_val = np.array(keras.utils.to_categorical(data_val['y_val'], num_classes=2))
+
+    scores = model.evaluate(x_val, y_val, verbose=1)
+    print("Fold Accuracy : %.2f%%\n" % (scores[1] * 100))
+    # model.save("cnn_model.h5")

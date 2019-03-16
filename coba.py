@@ -1,3 +1,3 @@
 import mainTrain as mt
 
-mt.main()
+mt.retrain()

@@ -12,56 +12,47 @@ import json
 
 
 def load_dataset():
-    if os.path.isfile("dataset.dat"):
-        ldfile = open("dataset.dat", mode='rb')
-        dataset = pickle.load(ldfile)
+    x_train = []
+    y_train = []
 
-        data = dataset["data"]
+    x_class, y_class = load_class("Training_Raw_Data_Class_1.xlsx", 0)
+    x_train.extend(x_class)
+    y_train.extend(y_class)
 
-        x_train = data['x_train'].tolist()
-        y_train = data['y_train'].tolist()
-        label_list = dataset["label_list"]
-    else:
-        x_train = []
-        y_train = []
+    x_class, y_class = load_class("Training_Raw_Data_Class_2.xlsx", 1)
+    x_train.extend(x_class)
+    y_train.extend(y_class)
 
-        x_class, y_class = load_class("Training_Raw_Data_Class_1.xlsx", 0)
-        x_train.extend(x_class)
-        y_train.extend(y_class)
+    dataset = []
 
-        x_class, y_class = load_class("Training_Raw_Data_Class_2.xlsx", 1)
-        x_train.extend(x_class)
-        y_train.extend(y_class)
+    for x, y in zip(x_train, y_train):
+        dataset.append([x, y])
 
-        dataset = []
+    random.shuffle(dataset)
 
-        for x, y in zip(x_train, y_train):
-            dataset.append([x, y])
+    x_train = [dataset[i][0] for i in range(len(dataset))]
+    y_train = [dataset[i][1] for i in range(len(dataset))]
 
-        random.shuffle(dataset)
-
-        x_train = [dataset[i][0] for i in range(len(dataset))]
-        y_train = [dataset[i][1] for i in range(len(dataset))]
-
-        label_list = ["Class 1", "Class 2"]
-
-    x_add, y_add = check_new()
-    if len(x_add) == len(y_add) and len(x_add) > 0 and len(y_add) > 0:
-        x_train.extend(x_add)
-        y_train.extend(y_add)
+    label_list = ["Class 1", "Class 2"]
 
     data = dict()
     data['x_train'] = np.array(x_train)
     data['y_train'] = np.array(y_train, dtype=int)
-
-    dataset = dict()
-    dataset["data"] = data
-    dataset["label_list"] = label_list
-
-    svfile = open("dataset.dat", mode="wb")
-    pickle.dump(dataset, svfile)
+    #
+    # dataset = dict()
+    # dataset["data"] = data
+    # dataset["label_list"] = label_list
+    #
+    # svfile = open("dataset.dat", mode="wb")
+    # pickle.dump(dataset, svfile)
 
     return data, label_list
+
+
+def load_new_data():
+    x_add, y_add = check_new()
+
+    return x_add, y_add
 
 
 def load_class(filename, class_label):
