@@ -32,7 +32,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Pipfile" value="1" />
+          <entry key="Pipfile" value="2" />
           <entry key="Procfile" value="2" />
           <entry key="html" value="1" />
           <entry key="py" value="3" />
@@ -43,13 +43,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="PLAIN_TEXT" value="13" />
           <entry key="Python" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Pipfile" value="47" />
+          <entry key="Pipfile" value="65" />
           <entry key="html" value="5" />
           <entry key="py" value="6073" />
           <entry key="txt" value="8" />
@@ -58,7 +58,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="PLAIN_TEXT" value="55" />
+          <entry key="PLAIN_TEXT" value="73" />
           <entry key="Python" value="6073" />
         </counts>
       </usages-collector>
@@ -69,7 +69,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/load_dataset.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -78,6 +78,15 @@
                 <element signature="e#0#18#0" expanded="true" />
                 <marker date="1552727909008" expanded="true" signature="4099:4597" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pipfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -160,10 +169,10 @@
         <option value="$PROJECT_DIR$/coba2.py" />
         <option value="$PROJECT_DIR$/coba.py" />
         <option value="$PROJECT_DIR$/mainTrain.py" />
-        <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/HelperFunction.py" />
         <option value="$PROJECT_DIR$/load_dataset.py" />
+        <option value="$PROJECT_DIR$/Pipfile" />
       </list>
     </option>
   </component>
@@ -531,13 +540,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pipfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/load_dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -546,6 +548,13 @@
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1552727909008" expanded="true" signature="4099:4597" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pipfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
         </state>
       </provider>
     </entry>
