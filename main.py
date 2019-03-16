@@ -23,9 +23,10 @@ def training():
 @app.route('/upload')
 def upload():
     q = Queue(connection=conn)
+    status = 1
 
     q.enqueue(mt.convert_upload(), 'http://heroku.com')
-    return jsonify(result=1, id=684)
+    return jsonify(result=status, id=684)
 
 
 if __name__ == '__main__':
