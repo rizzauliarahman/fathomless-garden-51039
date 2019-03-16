@@ -14,12 +14,18 @@ def main():
 
 @app.route('/training')
 def training():
-    q = Queue(connection=conn)
-
     mt.retrain()
     status = 1
 
     return jsonify(result=status, id=622)
+
+
+@app.route('/upload')
+def upload():
+    q = Queue(connection=conn)
+
+    q.enqueue(mt.convert_upload(), 'http://heroku.com')
+    return jsonify(result=1, id=684)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,12 @@ import keras
 import pickle
 import numpy as np
 import os
+import tensorflow as tf
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+from googleapiclient import errors
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
 
 
 def main():
@@ -93,3 +99,43 @@ def retrain():
     scores = model.evaluate(x_val, y_val, verbose=1)
     print("Fold Accuracy : %.2f%%\n" % (scores[1] * 100))
     # model.save("cnn_model.h5")
+
+
+def convert_upload():
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+    converter = tf.lite.TFLiteConverter.from_keras_model_file("cnn_model.h5")
+    tflite_model = converter.convert()
+    svfile = open("converted_cnn.tflite", "wb")
+    svfile.write(tflite_model)
+    svfile.close()
+
+    SCOPES = ['https://www.googleapis.com/auth/drive']
+
+    creds = None
+
+    if os.path.exists("token.pickle"):
+        with open("token.pickle", mode="rb") as token:
+            creds = pickle.load(token)
+
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            creds = flow.run_local_server()
+
+        with open("token.pickle", mode="wb") as token:
+            pickle.dump(creds, token)
+
+    service = build("drive", "v2", credentials=creds)
+
+    folder_id = "1tN8U5L1pspnhZuCoJht7yW7FTRsE5-WJ"
+
+    file_metadata = {'title': 'cnn_model.tflite', 'parents': [{'id': folder_id}]}
+    media = MediaFileUpload("converted_cnn.tflite", resumable=True)
+
+    file = service.files().insert(body=file_metadata, media_body=media, fields='id').execute()
+    print("File ID: %s" % file.get('id'))
+
+    os.remove("converted_cnn.tflite")
+
