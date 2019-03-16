@@ -1,0 +1,41 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
+[packages]
+googleapiclient = "*"
+google_auth_oauthlib = "*"
+google = "*"
+openpyxl = "*"
+beautifulsoup4 = "*"
+certifi = "*"
+click = "*"
+configparser = "*"
+enum34 = "*"
+Flask = "*"
+future = "*"
+google-api-python-client = "*"
+gunicorn = "*"
+httplib2 = "*"
+itsdangerous = "*"
+Jinja2 = "*"
+jsonschema = "*"
+lxml = "*"
+MarkupSafe = "*"
+oauth2client = "*"
+Pillow = "*"
+pyasn1 = "*"
+pyasn1-modules = "*"
+requests = "*"
+rsa = "*"
+six = "*"
+uritemplate = "*"
+Werkzeug = "*"
+wincertstore = "*"
+tensorflow = "*"
+keras = "*"
+
+[requires]
+
+python_version = "3.4"
