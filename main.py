@@ -16,7 +16,7 @@ def main():
 def training():
     q = Queue(connection=conn)
 
-    q.enqueue(mt.main(), 'http://heroku.com')
+    q.enqueue(mt.retrain(), 'http://heroku.com')
     status = 1
 
     return jsonify(result=status, id=622)
